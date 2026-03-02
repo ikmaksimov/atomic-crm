@@ -3,7 +3,7 @@ import { ArrayField } from "@/components/admin/array-field";
 import { SingleFieldList } from "@/components/admin/single-field-list";
 import { TextField } from "@/components/admin/text-field";
 import { EmailField } from "@/components/admin/email-field";
-import { Mail, Phone, Linkedin } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, MessageCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import { contactGender } from "./contactGender";
 import type { Contact } from "../types";
@@ -34,18 +34,34 @@ export const ContactPersonalInfo = () => {
         <PersonalInfoRow
           icon={<Linkedin className="w-4 h-4 text-muted-foreground" />}
           primary={
-            <a
+            
               className="underline hover:no-underline text-sm text-muted-foreground"
               href={record.linkedin_url}
               target="_blank"
               rel="noopener noreferrer"
-              title={record.linkedin_url}
             >
               LinkedIn
             </a>
           }
         />
       )}
+
+      {(record as any).instagram && (
+        <PersonalInfoRow
+          icon={<Instagram className="w-4 h-4 text-muted-foreground" />}
+          primary={
+            
+              className="underline hover:no-underline text-sm text-muted-foreground"
+              href={`https://instagram.com/${(record as any).instagram.replace("@", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {(record as any).instagram}
+            </a>
+          }
+        />
+      )}
+
       <ArrayField source="phone_jsonb">
         <SingleFieldList className="flex-col gap-y-0">
           <PersonalInfoRow
@@ -55,6 +71,23 @@ export const ContactPersonalInfo = () => {
           />
         </SingleFieldList>
       </ArrayField>
+
+      {(record as any).whatsapp && (
+        <PersonalInfoRow
+          icon={<MessageCircle className="w-4 h-4 text-muted-foreground" />}
+          primary={
+            
+              className="underline hover:no-underline text-sm text-muted-foreground"
+              href={`https://wa.me/${(record as any).whatsapp.replace(/[^0-9]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+          }
+        />
+      )}
+
       {contactGender
         .map((genderOption) => {
           if (record.gender === genderOption.value) {
