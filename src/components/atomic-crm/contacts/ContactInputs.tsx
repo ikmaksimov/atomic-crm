@@ -169,6 +169,11 @@ const ContactPersonalInformationInputs = () => {
         helperText={false}
         validate={isLinkedinUrl}
       />
+      <TextInput
+        source="instagram"
+        label="Instagram"
+        helperText={false}
+      />
     </div>
   );
 };
