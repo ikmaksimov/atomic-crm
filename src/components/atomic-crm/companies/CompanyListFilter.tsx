@@ -1,5 +1,5 @@
-import { Building, Truck, Users } from "lucide-react";
-import { FilterLiveForm, useGetIdentity } from "ra-core";
+import { Building, MapPin, Truck, Users } from "lucide-react";
+import { FilterLiveForm, useGetIdentity, useGetList } from "ra-core";
 import { ToggleFilterButton } from "@/components/admin/toggle-filter-button";
 import { SearchInput } from "@/components/admin/search-input";
 
@@ -10,6 +10,20 @@ import { sizes } from "./sizes";
 export const CompanyListFilter = () => {
   const { identity } = useGetIdentity();
   const { companySectors } = useConfigurationContext();
+
+  const { data: companies } = useGetList("companies", {
+    pagination: { page: 1, perPage: 1000 },
+    sort: { field: "city", order: "ASC" },
+  });
+
+  const cities = Array.from(
+    new Set(
+      (companies ?? [])
+        .map((c) => c.city)
+        .filter(Boolean)
+    )
+  ).sort();
+
   return (
     <div className="w-52 min-w-52 flex flex-col gap-8">
       <FilterLiveForm>
@@ -37,6 +51,19 @@ export const CompanyListFilter = () => {
           />
         ))}
       </FilterCategory>
+
+      {cities.length > 0 && (
+        <FilterCategory icon={<MapPin className="h-4 w-4" />} label="City">
+          {cities.map((city) => (
+            <ToggleFilterButton
+              className="w-full justify-between"
+              label={city}
+              key={city}
+              value={{ city }}
+            />
+          ))}
+        </FilterCategory>
+      )}
 
       <FilterCategory
         icon={<Users className="h-4 w-4" />}
