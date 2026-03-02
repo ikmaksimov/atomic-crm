@@ -79,6 +79,9 @@ const CompanyContactInputs = () => {
         validate={isLinkedinUrl}
       />
       <TextInput source="phone_number" helperText={false} />
+       <TextInput source="email" helperText={false} />
+      <TextInput source="instagram" helperText={false} />
+      <TextInput source="whatsapp" helperText={false} />
     </div>
   );
 };
