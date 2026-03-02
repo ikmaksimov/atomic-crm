@@ -34,7 +34,7 @@ export const ContactPersonalInfo = () => {
         <PersonalInfoRow
           icon={<Linkedin className="w-4 h-4 text-muted-foreground" />}
           primary={
-            
+            <a
               className="underline hover:no-underline text-sm text-muted-foreground"
               href={record.linkedin_url}
               target="_blank"
@@ -50,7 +50,7 @@ export const ContactPersonalInfo = () => {
         <PersonalInfoRow
           icon={<Instagram className="w-4 h-4 text-muted-foreground" />}
           primary={
-            
+            <a
               className="underline hover:no-underline text-sm text-muted-foreground"
               href={`https://instagram.com/${(record as any).instagram.replace("@", "")}`}
               target="_blank"
@@ -76,7 +76,7 @@ export const ContactPersonalInfo = () => {
         <PersonalInfoRow
           icon={<MessageCircle className="w-4 h-4 text-muted-foreground" />}
           primary={
-            
+            <a
               className="underline hover:no-underline text-sm text-muted-foreground"
               href={`https://wa.me/${(record as any).whatsapp.replace(/[^0-9]/g, "")}`}
               target="_blank"
