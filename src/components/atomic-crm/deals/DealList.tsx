@@ -12,6 +12,7 @@ import { SelectInput } from "@/components/admin/select-input";
 import { useConfigurationContext } from "../root/ConfigurationContext";
 import { TopToolbar } from "../layout/TopToolbar";
 import { DealArchivedList } from "./DealArchivedList";
+import { DealCompanyFilter } from "./DealCompanyFilter";
 import { DealCreate } from "./DealCreate";
 import { DealEdit } from "./DealEdit";
 import { DealEmpty } from "./DealEmpty";
@@ -27,6 +28,7 @@ const DealList = () => {
 
   const dealFilters = [
     <SearchInput source="q" alwaysOn />,
+    <DealCompanyFilter source="company_filter" alwaysOn />,
     <ReferenceInput source="company_id" reference="companies">
       <AutocompleteInput label={false} placeholder="Company" />
     </ReferenceInput>,
