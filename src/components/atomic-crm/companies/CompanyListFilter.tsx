@@ -81,7 +81,7 @@ export const CompanyListFilter = () => {
   );
 
   return (
-    <div className="w-52 min-w-52 flex flex-col gap-8">
+    <div className="w-52 min-w-52 flex flex-col gap-8 sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto hide-scrollbar pb-4 pr-1">
       <FilterLiveForm>
         <SearchInput source="q" />
       </FilterLiveForm>

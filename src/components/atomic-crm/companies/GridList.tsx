@@ -2,6 +2,7 @@ import { RecordContextProvider, useListContext } from "ra-core";
 
 import type { Company } from "../types";
 import { CompanyCard } from "./CompanyCard";
+import { InfiniteScrollDetector } from "./InfiniteScrollDetector";
 
 const times = (nbChildren: number, fn: (key: number) => any) =>
   Array.from({ length: nbChildren }, (_, key) => fn(key));
@@ -36,6 +37,10 @@ const LoadedGridList = () => {
       ))}
 
       {data.length === 0 && <div className="p-2">No companies found</div>}
+
+      <div className="col-span-full w-full">
+        <InfiniteScrollDetector />
+      </div>
     </div>
   );
 };
